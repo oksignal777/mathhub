@@ -1,0 +1,117 @@
+<div class="calculator">
+  <input type="text" id="screen" class="screen" disabled>
+  <div class="button-container">
+    <button class="button" onclick="appendToScreen('7')">7</button>
+    <button class="button" onclick="appendToScreen('8')">8</button>
+    <button class="button" onclick="appendToScreen('9')">9</button>
+    <button class="button button-operator" onclick="appendToScreen('+')">+</button>
+
+    <button class="button" onclick="appendToScreen('4')">4</button>
+    <button class="button" onclick="appendToScreen('5')">5</button>
+    <button class="button" onclick="appendToScreen('6')">6</button>
+    <button class="button button-operator" onclick="appendToScreen('-')">-</button>
+
+    <button class="button" onclick="appendToScreen('1')">1</button>
+    <button class="button" onclick="appendToScreen('2')">2</button>
+    <button class="button" onclick="appendToScreen('3')">3</button>
+    <button class="button button-operator" onclick="appendToScreen('*')">*</button>
+
+    <button class="button" onclick="appendToScreen('0')">0</button>
+    <button class="button" onclick="appendToScreen('.')">.</button>
+    <button class="button button-clear" onclick="clearScreen()">C</button>
+    <button class="button button-operator" onclick="appendToScreen('/')">/</button>
+
+    <button class="button button-equal" onclick="calculateResult()">=</button>
+  </div>
+</div>
+
+<script>
+  function appendToScreen(value) {
+    document.getElementById('screen').value += value;
+  }
+
+  function clearScreen() {
+    document.getElementById('screen').value = '';
+  }
+
+  function calculateResult() {
+    try {
+      document.getElementById('screen').value = eval(document.getElementById('screen').value);
+    } catch (e) {
+      document.getElementById('screen').value = 'Error';
+    }
+  }
+</script>
+
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .calculator {
+    background-color: #333;
+    border-radius: 15px;
+    padding: 25px;
+    width: 320px; /* Decreased width */
+    height: 480px; /* Maintained height */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .screen {
+    background-color: #222;
+    color: #fff;
+    font-size: 40px;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: right;
+    box-sizing: border-box;
+  }
+
+  .button-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+  .button {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 22px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .button:active {
+    background-color: #555;
+  }
+
+  .button-equal {
+    background-color: #007bff;
+    color: white;
+    grid-column: span 2;
+  }
+
+  .button-clear {
+    background-color: #dc3545;
+    color: white;
+    grid-column: span 2;
+  }
+
+  .button-operator {
+    background-color: #ff9800;
+    color: white;
+  }
+</style>
